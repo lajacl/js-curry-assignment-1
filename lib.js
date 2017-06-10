@@ -25,6 +25,7 @@ const listedPrice =
 const calculateTotals =
   listings =>
     carts => {
+      let cartTotals = []
       for (let cart of carts) {
         cart.total = 0
         for (let item of cart.items) {
@@ -32,8 +33,9 @@ const calculateTotals =
             cart.total += (listedPrice(listing)(item))
           }
         }
+        cartTotals.push({customer: cart.customer, total: cart.total})
       }
-      return carts
+      return cartTotals
     }
 
 module.exports = {
